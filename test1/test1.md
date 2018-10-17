@@ -1,11 +1,11 @@
 # oracle 实验一
 ## 1.查询语句一
 ```sql
-SELECT d.department_name，count(e.job_id)as "部门总人数"，
+SELECT d.department_name ,count(e.job_id)as "部门总人数" ,
 avg(e.salary)as "平均工资"
-from hr.departments d，hr.employees e
+from hr.departments d ,hr.employees e
 where d.department_id = e.department_id
-and d.department_name in ('IT'，'Sales')
+and d.department_name in ('IT' ,'Sales')
 GROUP BY department_name;
 ```
 ### 查询结果
@@ -14,12 +14,12 @@ GROUP BY department_name;
 >创建一个或多个索引来改进当前语句的执行计划。
 ## 2.查询语句二
 ```sql
-SELECT d.department_name，count(e.job_id)as "部门总人数"，
+SELECT d.department_name ,count(e.job_id)as "部门总人数" ,
 avg(e.salary)as "平均工资"
-FROM hr.departments d，hr.employees e
+FROM hr.departments d ,hr.employees e
 WHERE d.department_id = e.department_id
 GROUP BY department_name
-HAVING d.department_name in ('IT'，'Sales');
+HAVING d.department_name in ('IT' ,'Sales');
 ```
 ### 查询结果
 ![查询语句2](./result.png)
@@ -28,7 +28,7 @@ HAVING d.department_name in ('IT'，'Sales');
 
 ## 3.自定义语句
 ```sql
-SELECT d.department_name，count(e.job_id)as "部门总人数" ,
+SELECT d.department_name ,count(e.job_id)as "部门总人数" ,
 avg(e.salary)as "平均工资"
 FROM hr.departments d, hr.employees e
 WHERE d.department_id = e.department_id
