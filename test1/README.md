@@ -11,7 +11,7 @@ GROUP BY department_name;
 ### 查询结果
 ![查询语句1](./result.png)
 ### 优化指导
->创建一个或多个索引来改进当前语句的执行计划。
+>为数据库创建一个或多个索引来改进当前语句的执行计划。
 ## 2.查询语句二
 ```sql
 SELECT d.department_name ,count(e.job_id)as "部门总人数" ,
