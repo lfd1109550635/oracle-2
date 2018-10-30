@@ -62,14 +62,14 @@ SQL> exit
 ```
 4. 第四步
 >测试一下同学用户之间的表的共享
--- 共享
+ 4.1 共享
 ```sql
 $ sqlplus xiaoqingyu/123@pdborcl
 SQL> grant select on myview to wy;
 授权成功。
 SQL> exit
 ```
--- 测试
+4.2 测试
 
 ```sql
 $ sqlplus wy/123@pdborcl
