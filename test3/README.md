@@ -183,13 +183,14 @@ begin
   end loop;
 end;
 ```
-通过对i的求余判断分配不同的时间段和不同的产品id，将数据存入不同的分区，插入数据为1万条，执行时间 2.196秒
+通过对i的求余判断分配不同的时间段和不同的产品id，将数据存入不同的分区，插入数据为1万条，执行时间 2.196秒。
 
 查询数据匹配条数
 ```sql
 select count(*) from orders a,order_details b where a.order_id=b.order_id;
 ```
-查询两张表中相匹配数据的条数，因为插入数据时两张表是同时插入，order_details表中的order_id即为当时的orders表的id,则查询出数据为1万条，
+查询两张表中相匹配数据的条数，因为插入数据时两张表是同时插入，order_details表中的order_id即为当时的orders表的id,则查询出数据为1万条。
+
 ![查询匹配条数](./1.png)
 
 查询匹配数据
