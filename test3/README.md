@@ -190,8 +190,27 @@ end;
 select count(*) from orders a,order_details b where a.order_id=b.order_id;
 ```
 查询两张表中相匹配数据的条数，因为插入数据时两张表是同时插入，order_details表中的order_id即为当时的orders表的id,则查询出数据为1万条，
+![查询匹配条数](./1.png)
 
 查询匹配数据
 ```sql
-select * from orders a,order_details b where a.order_id=b.order_id;
+select * from orders a INNER JOIN order_details b ON (a.order_id=b.order_id);
 ```
+![查询数据](./2.png)
+
+### 执行计划
+```sql
+EXPLAIN plan for
+select * from xiaoqingyu.orders a INNER JOIN xiaoqingyu.order_details b ON (a.order_id=b.order_id);
+
+select * from table(dbms_xplan.display());
+```
+由执行结果可知：最先执行的是TABLE ACCESS FULL，意思为对order_details表进行全表扫描。
+
+然后其次执行的是PARTITION REFERENCE ALL，对分区进行引用。
+
+然后对orders表进行全表扫描。
+
+又因为使用了join，所以又进行了NESTED LOOPS连接查询。
+
+最后将数据查出。
