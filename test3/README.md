@@ -135,12 +135,12 @@ NOCOMPRESS NO INMEMORY
 );
 ```
 ### 分配权限
-分配查询权限
+1.分配查询权限
 ```sql
 grant select on ORDERS to xqy;
 grant select on ORDER_DETAILS to xqy;
 ```
-分配表空间权限
+2.分配表空间权限
 ```sql
 grant UNLIMITED TABLESPACE to xiaoqingyu;
 ```
@@ -185,14 +185,14 @@ end;
 ```
 通过对i的求余判断分配不同的时间段和不同的产品id，将数据存入不同的分区，插入数据为1万条，执行时间 2.196秒
 
-查询数据匹配条数
+1.查询数据匹配条数
 ```sql
 select count(*) from orders a,order_details b where a.order_id=b.order_id;
 ```
 查询两张表中相匹配数据的条数，因为插入数据时两张表是同时插入，order_details表中的order_id即为当时的orders表的id,则查询出数据为1万条，
 ![查询匹配条数](./1.png)
 
-查询匹配数据
+2.查询匹配数据
 ```sql
 select * from orders a INNER JOIN order_details b ON (a.order_id=b.order_id);
 ```
