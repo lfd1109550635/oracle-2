@@ -1,5 +1,8 @@
 # 实验四
 
+## 我的用户
+> xiaoqingyu
+
 ### 为用户分配表空间
 ```sql
 ALTER USER xiaoqingyu QUOTA UNLIMITED ON USERS;
