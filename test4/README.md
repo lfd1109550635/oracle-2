@@ -1,6 +1,6 @@
 # 实验四
 
-为用户分配表空间
+### 为用户分配表空间
 ```sql
 ALTER USER xiaoqingyu QUOTA UNLIMITED ON USERS;
 ALTER USER xiaoqingyu QUOTA UNLIMITED ON USERS02;
@@ -11,7 +11,7 @@ ALTER USER xiaoqingyu ACCOUNT UNLOCK;
 
 ![分配表空间结果](./用户分配表空间.png)
 
-为用户分配权限
+### 为用户分配权限
 ```sql
 GRANT "CONNECT" TO xiaoqingyu WITH ADMIN OPTION;
 GRANT "RESOURCE" TO xiaoqingyu WITH ADMIN OPTION;
@@ -21,7 +21,7 @@ ALTER USER xiaoqingyu DEFAULT ROLE "CONNECT","RESOURCE";
 
 ![分配权限结果](./分配权限.png)
 
-系统权限分配
+### 系统权限分配
 ```sql
 GRANT CREATE VIEW TO xiaoqingyu WITH ADMIN OPTION;
 ```
@@ -29,10 +29,10 @@ GRANT CREATE VIEW TO xiaoqingyu WITH ADMIN OPTION;
 
 ![系统权限授权结果](./系统权限授权.png)
 
-添加实验所需表和相应触发器、序列、视图
+### 添加实验所需表和相应触发器、序列、视图
 >具体代码查看同级目录下实验四.sql文件
 
-插入初始化数据
+### 插入初始化数据
 ```sql
 INSERT INTO xiaoqingyu.DEPARTMENTS(DEPARTMENT_ID,DEPARTMENT_NAME) values (1,'总经办');
 INSERT INTO xiaoqingyu.EMPLOYEES(EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID)
@@ -68,7 +68,7 @@ insert into xiaoqingyu.products (product_name,product_type) values ('paper2','�
 insert into xiaoqingyu.products (product_name,product_type) values ('paper3','耗材');
 ```
 
-插入订单数据 ,插入10000条数据，插入时间 6.305秒
+### 插入订单数据 ,插入10000条数据，插入时间 6.305秒
 ```sql
 declare
   dt date;
@@ -131,8 +131,9 @@ end;
 
 ![批量插入订单数据结果](./批量插入订单数据.png)
 
-查询数据
-查询单条数据
+### 查询数据
+
+#### 查询单条数据
 ```sql
 --查询数据 id值从10012到20021
 select * from xiaoqingyu.ORDERS where  order_id=10012;
@@ -140,7 +141,7 @@ select * from xiaoqingyu.ORDER_DETAILS where  order_id=10012;
 select * from xiaoqingyu.VIEW_ORDER_DETAILS where order_id=10012;
 ```
 
-递归查询员工及其下级员工
+#### 递归查询员工及其下级员工
 ```sql
 WITH A (EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID) AS
   (SELECT EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID
