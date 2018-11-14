@@ -29,6 +29,9 @@ GRANT CREATE VIEW TO xiaoqingyu WITH ADMIN OPTION;
 
 ![系统权限授权结果](./系统权限授权.png)
 
+添加实验所需表和相应触发器、序列、视图
+>具体代码查看同级目录下实验四.sql文件
+
 插入初始化数据
 ```sql
 INSERT INTO xiaoqingyu.DEPARTMENTS(DEPARTMENT_ID,DEPARTMENT_NAME) values (1,'总经办');
@@ -65,7 +68,7 @@ insert into xiaoqingyu.products (product_name,product_type) values ('paper2','�
 insert into xiaoqingyu.products (product_name,product_type) values ('paper3','耗材');
 ```
 
-插入订单数据
+插入订单数据 ,插入10000条数据，插入时间 6.305秒
 ```sql
 declare
   dt date;
@@ -127,3 +130,30 @@ end;
 2).插入结果
 
 ![批量插入订单数据结果](./批量插入订单数据.png)
+
+查询数据
+查询单条数据
+```sql
+--查询数据 id值从10012到20021
+select * from xiaoqingyu.ORDERS where  order_id=10012;
+select * from xiaoqingyu.ORDER_DETAILS where  order_id=10012;
+select * from xiaoqingyu.VIEW_ORDER_DETAILS where order_id=10012;
+```
+
+递归查询员工及其下级员工
+```sql
+WITH A (EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID) AS
+  (SELECT EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID
+    FROM xiaoqingyu.employees WHERE employee_ID = 11
+    UNION ALL
+  SELECT B.EMPLOYEE_ID,B.NAME,B.EMAIL,B.PHONE_NUMBER,B.HIRE_DATE,B.SALARY,B.MANAGER_ID,B.DEPARTMENT_ID
+    FROM A, xiaoqingyu.employees B WHERE A.EMPLOYEE_ID = B.MANAGER_ID)
+SELECT * FROM A;
+--或
+SELECT * FROM employees START WITH EMPLOYEE_ID = 11 CONNECT BY PRIOR EMPLOYEE_ID = MANAGER_ID;
+```
+查询结果
+
+![递归查询员工结果](./递归查询员工.png)
+
+>更多详细sql语句请查看实验4.sql
