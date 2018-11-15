@@ -1,5 +1,12 @@
 # 实验四
 
+### 我的用户与角色
+```flow js
+  用户：xiaoqingyu
+  角色：xqy
+  密码：123
+```
+
 ### 为用户分配表空间
 ```sql
 ALTER USER xiaoqingyu QUOTA UNLIMITED ON USERS;

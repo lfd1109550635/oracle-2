@@ -1,6 +1,11 @@
 # 实验三
 
-
+### 我的用户与角色
+```flow js
+  用户：xiaoqingyu
+  角色：xqy
+  密码：123
+```
 ### 创建orders并分区
 ```sql
   CREATE TABLE orders 
