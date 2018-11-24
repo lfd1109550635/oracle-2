@@ -40,7 +40,7 @@ create or replace PACKAGE BODY MyPack IS
     END;
 END MyPack;
 ```
-![包创建及设置函数过程结果](./包创建及设置函数过程.png)
+![包创建及设置函数过程结果](./包创建及设置函数,过程.png)
 #### 调用函数及过程
 ```sql
 select count(*) from orders;
