@@ -46,6 +46,7 @@ END MyPack;
 select count(*) from orders;
 select MyPack.Get_SaleAmount(11) AS 部门11应收金额,MyPack.Get_SaleAmount(12) AS 部门12应收金额 from dual;
 ```
+![函数调用结果](./函数调用.png)
 
 ```sql
 set serveroutput on
